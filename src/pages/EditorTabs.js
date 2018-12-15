@@ -52,7 +52,7 @@ export default class EditorTabs extends React.Component {
 
   componentDidMount() {
     this.setState({
-      width: this.wrapper.clientWidth,
+      width: this.wrapper.clientWidth - 200,
       height: this.wrapper.clientHeight
     });
   }

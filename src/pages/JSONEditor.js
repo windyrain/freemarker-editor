@@ -17,7 +17,7 @@ export default class Editor extends React.Component {
   onChange(newValue, e) {
     if (changeTimeout) clearTimeout(changeTimeout);
     changeTimeout = setTimeout(() => {
-      EventEmitter.emit('freemarker-content-changed', newValue);
+      EventEmitter.emit('freemarker-data-changed', newValue);
     }, 300);
   }
   render() {
@@ -29,7 +29,7 @@ export default class Editor extends React.Component {
       <MonacoEditor
         width={this.props.width}
         height={this.props.height}
-        language="html"
+        language="json"
         theme="vs-light"
         value={code}
         options={options}
