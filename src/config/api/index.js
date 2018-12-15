@@ -1,6 +1,8 @@
 const apis = {
   "directoryList": "/directory/list",
-  "render": "/static/render"
+  "render": "/static/render",
+  "setDirectory":"/directory/fileContent",
+  "saveDirectory":"/static/saveFile"
 }
 
 export function get(apiName) {

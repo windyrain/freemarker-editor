@@ -19,15 +19,22 @@ export default class Menu extends React.Component {
   loop(data){
     return data.map( d => {
         if(d.children && d.children.length){
-            return <TreeNode key={d.key} title={d.name}>{this.loop(d.children)}</TreeNode>
+            return <TreeNode key={d.path} title={d.name} value={d.path}>{this.loop(d.children)}</TreeNode>
         } else {
-            return <TreeNode key={d.key} title={d.name} isLeaf></TreeNode>
+            return <TreeNode key={d.path} title={d.name} isLeaf value={d.path}></TreeNode>
         }
     })
   }
 
-  onSelect = () => {
-    console.log('Trigger Select');
+  onSelect = (selectedKeys, info) => {
+     const { node } = info;
+     if(node.props && node.props.isLeaf) {
+      axios.get(API.get('setDirectory') + '?path=' + node.props.value).then((res)=>{
+        this.props.setData(res.data, node.props.value)
+      }).catch(()=>{})
+     }else{ /**非叶子节点处理,不需要展示文件内容 */
+        
+     }
   };
 
   onExpand = () => {
@@ -40,7 +47,6 @@ export default class Menu extends React.Component {
       this.setState({
         treeData: [data]
       });
-      console.log(data);
     })
   }
 

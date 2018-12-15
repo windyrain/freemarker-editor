@@ -60,11 +60,12 @@ export default class FreemarkerRender extends Component {
   render() {
     return (
       <iframe 
+        title='free-marker'
         className="freemarker-render-container"
         frameBorder={0}
         style={{width: "100%", height: "100%", border: "0 none"}}
         allowTransparency={true}
-        srcdoc={this.state.result}>
+        srcDoc={this.state.result}>
       </iframe>
     );
   }

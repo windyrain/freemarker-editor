@@ -70,6 +70,8 @@ export default class EditorTabs extends React.Component {
           {this.state.panes.map(pane => (
             <TabPane tab={pane.title} key={pane.key}>
               <Editor 
+                data={this.props.data}
+                path={this.props.path}
                 width={this.state.width}
                 height={this.state.height}
                 />

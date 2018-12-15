@@ -6,6 +6,14 @@ import FreemarkerRender from "./pages/FreemarkerRender";
 import "./App.css";
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      data: '',
+      path:''
+    }
+    this.setData = this.setData.bind(this);
+  }
 
   componentDidMount() {
     this.setState({
@@ -14,15 +22,22 @@ class App extends Component {
     });
   }
 
+  setData(data, path){
+    this.setState({
+      data,
+      path
+    })
+  }
+
   render() {
     return (
       <div className="freemarker-container">
         <div className="freemarker-menu">
           <div className="freemarker-menu-toolbar" />
-          <Menu />
+          <Menu setData={this.setData}/>
         </div>
         <div className="freemarker-editor">
-          <EditorTabs /> 
+          <EditorTabs data={this.state.data} path={this.state.path}/> 
         </div>
         <div className="freemarker-right-label">
           <div className="freemarker-data" ref={ref => this.jsonWrapper = ref}>
